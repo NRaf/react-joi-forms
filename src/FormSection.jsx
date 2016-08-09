@@ -110,6 +110,7 @@ var FormSection = React.createClass({
                     return context[`${fieldComponent}Component`](context.getErrors(fieldName), context.getValue(fieldName), options, {
                         onChange: this.__onChange,
                         onSelect2Search: this.__onSelect2Search,
+                        onAutocompleteSearch: this.__onAutocompleteSearch,
                         onFocus: this.__onFocus,
                         onBlur: this.__onBlur
                     })
@@ -164,6 +165,12 @@ var FormSection = React.createClass({
             change[e.target.name] = e.target.value;
 
             context.onSelect2Search(e, change);
+        }
+    },
+    __onAutocompleteSearch (searchText, dataSource) {
+        var context = this.context.joiForm;
+        if(context.onAutocompleteSearch) {
+            context.onAutocompleteSearch(searchText, dataSource);
         }
     },
     __onFocus(e) {

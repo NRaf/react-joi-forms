@@ -18,7 +18,9 @@ var JoiForm = React.createClass({
         radioComponent: React.PropTypes.func,
         checkboxComponent: React.PropTypes.func,
         fileComponent: React.PropTypes.func,
-        formComponent: React.PropTypes.func
+        formComponent: React.PropTypes.func,
+        autocompleteComponent: React.PropTypes.func,
+        onAutocompleteSearch: React.PropTypes.func,
     },
     childContextTypes: {
         joiForm: React.PropTypes.object
@@ -42,7 +44,9 @@ var JoiForm = React.createClass({
                 radioComponent: this.props.radioComponent,
                 checkboxComponent: this.props.checkboxComponent,
                 fileComponent: this.props.fileComponent,
-                formComponent: this.props.formComponent
+                formComponent: this.props.formComponent,
+                autocompleteComponent: this.props.autocompleteComponent,
+                onAutocompleteSearch: this.__onAutocompleteSearch
             }
         };
     },
@@ -303,6 +307,11 @@ var JoiForm = React.createClass({
         if(this.props.onSelect2Search) {
             this.props.onSelect2Search(e, change);
         }
+    },
+    __onAutocompleteSearch (searchText, dataSource) {
+      if (this.props.onAutocompleteSearch) {
+        return this.props.onAutocompleteSearch(searchText, dataSource)
+      }
     },
     __onFocus(e) {
         if(this.props.onFocus) {
