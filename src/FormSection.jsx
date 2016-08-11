@@ -34,7 +34,7 @@ var FormSection = React.createClass({
                     if(!fieldSchema.isJoi) {
                         throw new Error('An array of Joi objects is what we expect for joi-react-forms.');
                     }
-                    if(!fieldSchema._flags.label) {
+                    if(!fieldSchema._settings.language || !fieldSchema._settings.language.label) {
                         throw new Error('All joi-react-form elements MUST have a label or a name meta key/value');
                     }
 
@@ -49,7 +49,7 @@ var FormSection = React.createClass({
                     }
 
                     var fieldComponent = fieldSchema._meta.component || 'text';
-                    var fieldName = fieldSchema._meta.name || this._camelize(fieldSchema._flags.label);
+                    var fieldName = fieldSchema._meta.name || this._camelize(fieldSchema._settings.language.label);
                     var optionNames, optionValues;
 
                     if(fieldComponent === 'select' || fieldComponent === 'select2') {
@@ -67,7 +67,7 @@ var FormSection = React.createClass({
                         ...fieldSchema._meta,
                         required: fieldSchema._flags.presence === 'required',
                         name: fieldName,
-                        label: fieldSchema._flags.label,
+                        label: fieldSchema._settings.language.label,
                         key: fieldName,
                         allowed: optionValues,
                         default: fieldSchema._flags ? fieldSchema._flags.default : undefined

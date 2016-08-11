@@ -159,7 +159,7 @@ var JoiForm = React.createClass({
         if(this.props.schema) {
             this.props.schema.forEach((fieldSchema) => {
                 var meta = fieldSchema._meta[0] || fieldSchema._meta;
-                var fieldName = meta.name || this._camelize(fieldSchema._flags.label);
+                var fieldName = meta.name || this._camelize(fieldSchema._settings.language.label);
                 schema[fieldName] = fieldSchema;
             });
         }
@@ -179,7 +179,7 @@ var JoiForm = React.createClass({
             this.props.schema.forEach((fieldSchema) => {
 
                 var meta = fieldSchema._meta[0] || fieldSchema._meta;
-                var name = meta.name || this._camelize(fieldSchema._flags.label);
+                var name = meta.name || this._camelize(fieldSchema._settings.language.label);
 
                 // if no value set for this field, but their is a default, set it
                 if(state.values[name] === undefined && fieldSchema._flags.default !== undefined) {
@@ -203,7 +203,7 @@ var JoiForm = React.createClass({
         if(nextProps.schema) {
             nextProps.schema.forEach((fieldSchema) => {
                 var meta = fieldSchema._meta[0] || fieldSchema._meta;
-                var fieldName = meta.name || this._camelize(fieldSchema._flags.label);
+                var fieldName = meta.name || this._camelize(fieldSchema._settings.language.label);
                 schema[fieldName] = fieldSchema;
             });
         }
