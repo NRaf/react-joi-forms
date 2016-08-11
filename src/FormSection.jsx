@@ -50,7 +50,7 @@ var FormSection = React.createClass({
                     }
 
                     var fieldComponent = fieldSchema._meta.component || 'text';
-                    var fieldName = fieldSchema._meta.name || this._camelize(fieldSchema._settings.language.label);
+                    var fieldName = fieldSchema._meta.name || this._camelize(fieldSchema._flags.label);
                     var optionNames, optionValues;
 
                     if(fieldComponent === 'select' || fieldComponent === 'select2') {
@@ -68,7 +68,7 @@ var FormSection = React.createClass({
                         ...fieldSchema._meta,
                         required: fieldSchema._flags.presence === 'required',
                         name: fieldName,
-                        label: fieldSchema._settings.language.label,
+                        label: fieldSchema._flags.label,
                         key: fieldName,
                         allowed: optionValues,
                         default: fieldSchema._flags ? fieldSchema._flags.default : undefined
